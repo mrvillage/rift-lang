@@ -1,0 +1,29 @@
+[package]
+name = "rift-lang"
+version = "0.1.0"
+edition = "2021"
+
+[build-dependencies]
+lalrpop = "0.19"
+
+[dependencies]
+regex = "1.7"
+dashmap = "5.4"
+bigdecimal = "0.3"
+expose_derive = { path = "expose_derive" }
+enum_derive = { path = "enum_derive" }
+
+[dependencies.time]
+version = "0.3"
+features = ["parsing"]
+
+[dependencies.lalrpop-util]
+version = "0.19"
+features = ["lexer"]
+
+[dev-dependencies]
+criterion = "0.4"
+
+[[bench]]
+name = "basic"
+harness = false
