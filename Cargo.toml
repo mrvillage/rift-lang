@@ -4,10 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [build-dependencies]
-lalrpop = "0.19"
+lalrpop = "0.20"
 
 [dependencies]
-regex = "1.7"
+regex = "1.8"
 dashmap = "5.4"
 bigdecimal = "0.3"
 expose_derive = { path = "expose_derive" }
@@ -18,11 +18,11 @@ version = "0.3"
 features = ["parsing"]
 
 [dependencies.lalrpop-util]
-version = "0.19"
+version = "0.20"
 features = ["lexer"]
 
 [dev-dependencies]
-criterion = "0.4"
+criterion = "0.5"
 
 [[bench]]
 name = "basic"
