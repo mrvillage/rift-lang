@@ -97,32 +97,32 @@ fn impl_expose_derive(ast: &syn::DeriveInput) -> TokenStream {
             }
         });
     let gen = quote! {
-        impl lang::Expose for #name {
-            fn get_attr(&self, _ctx: &lang::Context, ident: &str) -> lang::ValueResult {
+        impl rift_lang::Expose for #name {
+            fn get_attr(&self, _ctx: &rift_lang::Context, ident: &str) -> rift_lang::ValueResult {
                 match ident {
                     #( #exposed_attributes )*
                     #( #exposed_properties)*
-                    _ => Err(lang::RuntimeError::AttributeNotFound(ident.to_string())),
+                    _ => Err(rift_lang::RuntimeError::AttributeNotFound(ident.to_string())),
                 }
             }
 
-            fn get_static_attr(&self, _ctx: &lang::Context, ident: &str) -> lang::ValueResult {
+            fn get_static_attr(&self, _ctx: &rift_lang::Context, ident: &str) -> rift_lang::ValueResult {
                 match ident {
                     #( #exposed_methods )*
-                    _ => Err(lang::RuntimeError::StaticAttributeNotFound(ident.to_string())),
+                    _ => Err(rift_lang::RuntimeError::StaticAttributeNotFound(ident.to_string())),
                 }
             }
         }
 
-        impl From<#name> for lang::Value {
+        impl From<#name> for rift_lang::Value {
             fn from(value: #name) -> Self {
-                lang::Value::AttrVar(lang::Var::new(value))
+                rift_lang::Value::AttrVar(rift_lang::Var::new(value))
             }
         }
 
-        impl From<&#name> for lang::Value {
+        impl From<&#name> for rift_lang::Value {
             fn from(value: &#name) -> Self {
-                lang::Value::AttrVar(lang::Var::new(value.clone()))
+                rift_lang::Value::AttrVar(rift_lang::Var::new(value.clone()))
             }
         }
     };
